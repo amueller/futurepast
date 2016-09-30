@@ -75,7 +75,7 @@ class NewClass(object):
 from futurepast import RenamedParameter
 
 def myfunc(new_parameter=RenamedParameter(default_value, old="old_parameter",
-           past=old_version, future=new_version):
+           past=old_version, future=new_version)):
     pass
 
 
@@ -94,6 +94,9 @@ def myfunc(parameter=ChangedDefault(
 To make it easy for the developer, any deprecation from ``futurepast`` will
 raise an error once ``future`` (that is ``new_version``) arrives, so you know
 when to get rid of the old code.
+
+Once the future arrives, it is enough to simply remove the decorator or call to
+``futurepast``
 
 ## Assumptions on deprecations
 
