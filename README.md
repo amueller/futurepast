@@ -34,21 +34,66 @@ developers as possible, and help you to make sure no API is broken
 accidentally.
 
 It provides helpers to
-- rename and move functions, methods, attributes, classes, modules and constants
-- rename parameters
+- rename, move and remove functions, methods, attributes, classes, modules and constants
+- rename and remove parameters
 - change default values of parameters
 
 
 ## How does it work?
 
+Let's say we are in version ``old_version`` and we want to remove the old
+API in ``new_version``.
+
 ```python
-# renaming a parameter
 
-from futurepast import MovedParameter
+# remove a class
+from futurepast import remove
 
-def myfunc(still_here, MovedParameter(
+@remove(past=old_version, future=new_version)
+class MyClass(object):
+    pass
+
+
+# remove a method
+
+class MyClass(object):
+    @remove(past=old_version, future=new_version)
+    def my_method(self):
+        pass
+
+
+# renamed a class from OldClass to NewClass
+
+@move(old="OldClass", past=old_version, future=new_version)
+class NewClass(object):
+    pass
+
+
+
+# renaming parameter old_parameter to new_parameter
+
+from futurepast import RenamedParameter
+
+def myfunc(new_parameter=RenamedParameter(default_value, old="old_parameter",
+           past=old_version, future=new_version):
+    pass
+
+
+# changing default value of parameter
+
+from futurepast import ChangedDefault
+
+def myfunc(parameter=ChangedDefault(
+           old=old_default, new=new_default,
+           past=old_version, future=new_version))
+    pass
+
 
 ```
+
+To make it easy for the developer, any deprecation from ``futurepast`` will
+raise an error once ``future`` (that is ``new_version``) arrives, so you know
+when to get rid of the old code.
 
 ## Assumptions on deprecations
 
