@@ -63,31 +63,29 @@ class MyClass(object):
 
 
 # renamed a class from OldClass to NewClass
+from futurepast import move
 
 @move(old="OldClass", past=old_version, future=new_version)
 class NewClass(object):
     pass
 
 
-
 # renaming parameter old_parameter to new_parameter
 
-from futurepast import RenamedParameter
+from futurepast import rename_parameter
 
-def myfunc(new_parameter=RenamedParameter(default_value, old="old_parameter",
-           past=old_version, future=new_version)):
+@rename_parameter(old="old_parameter", past=old_version, future=new_version)
+def myfunc(new_parameter=default_value):
     pass
 
 
 # changing default value of parameter
 
-from futurepast import ChangedDefault
+from futurepast import changed_default
 
-def myfunc(parameter=ChangedDefault(
-           old=old_default, new=new_default,
-           past=old_version, future=new_version))
+@change_default(old=old_default, past=old_version, future=new_version)
+def myfunc(parameter=new_default)
     pass
-
 
 ```
 
