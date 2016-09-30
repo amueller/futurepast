@@ -114,7 +114,7 @@ about. The second and third are somewhat on the users of your code.
 Given the requirements on deprecations given above, some things can not be
 handled nicely. For example changing the return value of a function is not
 possible in this way, which is something I want to do A LOT.
-The best work-aroud might be to rename the function and give the new function
+The best work-around might be to rename the function and give the new function
 the new behavior.
 
 ## Patterns to avoid
