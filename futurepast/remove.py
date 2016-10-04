@@ -1,7 +1,8 @@
-from .deprecate import _attach_class_warning
+from .base import _BaseDecorator
+from .deprecate import _attach_class_warning, _attach_function_warning
 
 
-class remove(object):
+class remove(_BaseDecorator):
     def __init__(self, past, future):
         self.past = past
         self.future = future
@@ -20,4 +21,4 @@ class remove(object):
         return _attach_class_warning(obj, self._make_message(obj))
 
     def _decorate_function(self, obj):
-        pass
+        return _attach_function_warning(obj, self._make_message(obj))
