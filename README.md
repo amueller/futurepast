@@ -74,7 +74,7 @@ class NewClass(object):
 
 from futurepast import rename_parameter
 
-@rename_parameter(old="old_parameter", past=old_version, future=new_version)
+@rename_parameter(old="old_parameter", new="new_parameter", past=old_version, future=new_version)
 def myfunc(new_parameter=default_value):
     pass
 
