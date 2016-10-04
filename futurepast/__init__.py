@@ -1,8 +1,4 @@
 from .move import move
+from .deprecate import FutureDeprecationWarning
 
-
-def FutureDeprecationWarning(UserWarning, DeprecationWarning):
-    pass
-
-
-__all__ = ['move']
+__all__ = ['move', 'FutureDeprecationWarning']
