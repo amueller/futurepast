@@ -26,11 +26,9 @@ def test_change_default():
         return myparam
 
     # if we set the param, no warning
-    with pytest.warns(FutureDeprecationWarning) as warnings:
-        result = myfunc(myparam="not default")
+    result = myfunc(myparam="not default")
 
     assert result == "not default"
-    assert len(warnings) == 0
 
     # don't set the param, get old behavior and warning
     with pytest.warns(FutureDeprecationWarning) as warnings:
@@ -38,6 +36,7 @@ def test_change_default():
 
     assert result == "old_value"
     assert len(warnings) == 1
-    message = ('Parameter old_parameter was renamed to new_parameter in '
-               'version 2.3 and will be removed in version 10.')
+    message = ('The default value of parameter myparam was schedule to change'
+               ' from old_value to new_value in version 23. The change will '
+               'happen in version 42.')
     assert warnings[0].message.args[0] == message

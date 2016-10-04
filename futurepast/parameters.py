@@ -86,16 +86,18 @@ class change_default(object):
                 "Parameter {} not present in {} {}.".format(
                     self.parameter, type(func).__name__, func.__name__))
 
-        new = parameters['parameter'].default
+        new = parameters[self.parameter].default
 
         message = ("The default value of parameter {} was schedule to "
                    "change from {} to {} in version {}. The change will "
-                   "happen in version {}".format(self.parameter, self.old, new,
-                                                 self.past, self.future))
+                   "happen in version {}.".format(self.parameter, self.old,
+                                                  new, self.past, self.future))
 
         @wraps(func)
         def wrapped_func(*args, **kwargs):
             if self.parameter not in kwargs.keys():
-                kwargs['parameter'] = self.old
+                kwargs[self.parameter] = self.old
                 warnings.warn(message, category=FutureDeprecationWarning)
             return func(*args, **kwargs)
+
+        return wrapped_func
