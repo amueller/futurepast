@@ -116,8 +116,11 @@ handled nicely. For example changing the return value of a function is not
 possible in this way, which is something I want to do A LOT.
 The best work-around might be to rename the function and give the new function
 the new behavior.
+There also currently no way to move anything into a different module automatically
+(because I haven't figured out how).
 
 ## Patterns to avoid
+- Avoid deprecations at all cost! Even if they are safe, they are still a hassle for the user!
 - Don't break API without letting the user adjust!
 - Don't make the user change the code twice, once on deprecation and once on removal!
 - Don't keep warning the user after they made the change!
