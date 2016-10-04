@@ -22,3 +22,14 @@ def _attach_class_warning(Class, message):
     if old_doc:
         Class.__doc__ += old_doc
     return Class
+
+
+def _attach_function_warning(func, message):
+
+    @functools.wraps(func)
+    def wrapped_function(*args, **kwargs):
+        warnings.warn(message,
+                      category=FutureDeprecationWarning)
+        return func(*args, **kwargs)
+
+    return wrapped_function
