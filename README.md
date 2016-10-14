@@ -1,5 +1,6 @@
 # futurepast
-Deprecation tools for Python (and humans)
+Deprecation tools for Python (and humans).
+This is rant masquerading as a package.
 
 ## What are deprecations?
 
@@ -123,4 +124,5 @@ There also currently no way to move anything into a different module automatical
 - Avoid deprecations at all cost! Even if they are safe, they are still a hassle for the user!
 - Don't break API without letting the user adjust!
 - Don't make the user change the code twice, once on deprecation and once on removal!
+- Make sure the deprecated code can be replaced RIGHT NOW!
 - Don't keep warning the user after they made the change!
